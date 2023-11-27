@@ -1,0 +1,10 @@
+ <section> 
+  <div mat-dialog-content>
+    <h4><b>Excluir Tarefa</b></h4>
+    <p>Tem certeza que deseja excluir a tarefa <b>{{ data.title }}</b> ?</p>
+    <div class="d-flex justify-content-end mt-5">
+      <button class="btn btn-danger m-1 mt-4" (click)="cancelar()">Cancelar</button>
+      <button class="btn btn-success m-1 mt-4" (click)="excluirTarefa()">Excluir</button>
+    </div>
+  </div>
+</section>

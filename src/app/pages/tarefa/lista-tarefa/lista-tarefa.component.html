@@ -1,0 +1,55 @@
+<div class="container mt-5">
+  <h1 class="text-center"><b>{{ title }}</b></h1>  
+  <div class="d-flex justify-content-between">
+    <div>
+      <div><button class="btn btn-outline-primary mt-4" (click)="abrirModalCriarTarefa()">Nova Tarefa</button></div>
+    </div>
+    <form class="form-inline mt-4">
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="text" class="form-control"
+          placeholder="Pesquisar por título" (input)="filtrarGrid($event.target)">
+      </div>
+    </form>
+  </div>
+  <hr class="mt-2">
+  <table class="table">
+    <thead>
+      <tr class="align-middle">
+        <th scope="col"></th>
+        <th scope="col"> Status</th>
+        <th scope="col">Título</th>
+        <th scope="col">Descrição</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="align-middle">
+      <tr *ngFor="let tarefa of listaTarefas">
+        <td class="align-middle">
+          <div class="form-check" *ngIf="tarefa.completed">
+            <input class="form-check-input" type="checkbox" value="" (click)="alterStatusTarefa(tarefa)"
+              style="background-color: rgb(5, 175, 5); border: none; width: 25px; height: 25px;" checked>
+          </div>
+        </td>
+        <td *ngIf="tarefa.completed"> Finalizada</td>
+        <td *ngIf="!tarefa.completed"> Não Finalizada</td>
+        <td style="max-width: 300px;" class="card-text">{{tarefa.title}}</td>
+        <td style="max-width: 300px;" class="card-text">{{tarefa.description}}</td>
+        <td class="d-flex justify-content-end">
+          <small class=" p-1"><button class="btn btn-outline-primary"
+              (click)="abrirModalDetalheTarefa(tarefa)">Detalhe</button></small>
+          <small class="p-1"><button class="btn btn btn-outline-primary"
+              (click)="abrirModalEditarTarefa(tarefa)">Editar</button></small>
+          <small class=" p-1"><button class="btn btn-outline-danger"
+              (click)="abrirModalExcluirTarefa(tarefa)">Excluir</button></small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center mt-2">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" pageBtnClass="btn"
+      previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+  </div>
+  <h3 *ngIf="filtroNaoEncotrado" class="text-center">{{dadosLista}}</h3>
+</div>

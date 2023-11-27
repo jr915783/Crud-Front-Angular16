@@ -1,0 +1,16 @@
+ <section> 
+  <div mat-dialog-content>
+    <h4><b>Detalhe Tarefa</b></h4>
+    <div class="card mt-4">
+      <div class="card-header">
+        <b>Título: </b>{{ data.title }}
+      </div>
+      <div class="card-body">        
+        <p class="card-text"><b>Descrição: </b>{{ data.description }}</p>        
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mt-5 mb-0 ">
+      <button class="btn btn-danger m-1" (click)="cancelar()">Fechar</button>      
+    </div>    
+  </div> 
+</section>
